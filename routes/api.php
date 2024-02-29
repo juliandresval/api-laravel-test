@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RechargeController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
 use App\Http\Resources\SubscriptionResource;
@@ -21,5 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('subscriptions', SubscriptionController::class);
 Route::apiResource('users', UserController::class);
+Route::apiResource('subscriptions', SubscriptionController::class);
+Route::apiResource('recharges', RechargeController::class);
