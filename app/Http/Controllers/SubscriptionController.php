@@ -13,9 +13,10 @@ class SubscriptionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return SubscriptionResource::collection(Subscription::all());
+        $limit = $request->query('limit', 10);
+        return SubscriptionResource::collection(Subscription::paginate($limit));
     }
 
     /**

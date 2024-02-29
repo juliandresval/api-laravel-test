@@ -13,9 +13,10 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return UserResource::collection(User::all());
+        $limit = $request->query('limit', 10);
+        return UserResource::collection(User::paginate($limit));
     }
 
     /**
