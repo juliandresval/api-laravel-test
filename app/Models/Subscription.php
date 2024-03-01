@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Subscription extends Model
 {
@@ -17,4 +18,9 @@ class Subscription extends Model
         'created_at' => 'datetime:Y-m-d\\TH:i:sP',
         'updated_at' => 'datetime:Y-m-d\\TH:i:sP'
     ];
+
+    public function recharges(): HasMany
+    {
+        return $this->hasMany(Recharge::class);
+    }
 }
