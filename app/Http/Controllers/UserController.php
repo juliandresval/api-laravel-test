@@ -46,6 +46,20 @@ class UserController extends Controller
     }
 
     /**
+     * Metodo para actualizar contraseña
+     * @param Request $request
+     * @param User $user
+     */
+    public function passwordUpdating(Request $request, User $user)
+    {
+        $validated = $request->validate(['password' => 'required|min:8']);
+        $user->updatePassword($validated['password']);
+        return response()->json(
+            ['message' => 'Password updated.']
+        );
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(User $user)

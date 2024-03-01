@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 */
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('users/{user}/password-reset', [UserController::class, 'passwordUpdating']);
     Route::apiResource('users', UserController::class);
     Route::apiResource('subscriptions', SubscriptionController::class);
     Route::apiResource('recharges', RechargeController::class);

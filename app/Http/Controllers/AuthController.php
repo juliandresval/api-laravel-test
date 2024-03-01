@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 
+    /**
+     * Metodo para login de usuario
+     * @param LoginRequest $request
+     */
     public function login(LoginRequest $request)
     {
         if (!Auth::attempt($request->validated())) {
@@ -27,6 +31,9 @@ class AuthController extends Controller
         ], 200);
     }
 
+    /**
+     * Metodo para logout del usuario
+     */
     public function logout() {
         auth()->user()->tokens()->delete();
         return response()->json([

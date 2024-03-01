@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Events\UpdatePasswordEvent;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,6 +14,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    protected $observables = ['updatePassword',];
 
     /**
      * The attributes that are mass assignable.
@@ -47,8 +51,22 @@ class User extends Authenticatable
         'updated_at' => 'datetime:Y-m-d\\TH:i:sP'
     ];
 
+
+    /**
+     * Método para obtener las recargas asociadas al usuario
+     */
     public function recharges(): HasMany
     {
         return $this->hasMany(Recharge::class);
+    }
+
+    /**
+     * Método para actualizar contraseña de un usuario
+     * @param string $password
+     */
+    public function updatePassword(string $password)
+    {
+        $this->fireModelEvent('updatePassword');
+        return $this->fill(compact('password'))->save([]);
     }
 }

@@ -22,11 +22,17 @@ class Recharge extends Model
         'updated_at' => 'datetime:Y-m-d\\TH:i:sP'
     ];
 
+    /**
+     * Método para obtener el usuario asociado a la recarga
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    /**
+     * Método para obtener la suscripción asociada a la recarga
+     */
     public function subscription(): BelongsTo
     {
         return $this->belongsTo(Subscription::class, 'subscription_id');

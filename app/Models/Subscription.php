@@ -19,6 +19,9 @@ class Subscription extends Model
         'updated_at' => 'datetime:Y-m-d\\TH:i:sP'
     ];
 
+    /**
+     * Método para obtener las recargas asociadas la suscripción
+     */
     public function recharges(): HasMany
     {
         return $this->hasMany(Recharge::class);
