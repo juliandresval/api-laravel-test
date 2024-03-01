@@ -22,7 +22,7 @@ class UpdateRechargeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'state' => 'required'
+            'state' => 'required|string|in:completed,failed'
         ];
     }
 }

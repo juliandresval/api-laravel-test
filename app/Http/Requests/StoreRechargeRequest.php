@@ -22,9 +22,9 @@ class StoreRechargeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required',
-            'subscription_id' => 'required',
-            'value' => 'required',
+            'user_id'           => 'required|integer|exists:users,id',
+            'subscription_id'   => 'required|integer|exists:subscriptions,id',
+            'value'             => 'required|integer',
         ];
     }
 }
